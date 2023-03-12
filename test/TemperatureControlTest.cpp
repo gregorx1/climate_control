@@ -29,10 +29,10 @@ TEST(TemperatureControlTest, LogicTest) {
 TEST(TemperatureControlTest, TemperatureTest1) {
     TemperatureControlImpl& control = TemperatureControlImpl::getInstance();
 
-    control.setLowLimit(22);
+    control.setLowLimit(15);
     control.setHighLimit(28);
 
-    EXPECT_EQ(control.getLowLimit(), 22);
+    EXPECT_EQ(control.getLowLimit(), 15);
     EXPECT_EQ(control.getHighLimit(), 28);
 }
 
