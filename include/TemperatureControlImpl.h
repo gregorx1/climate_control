@@ -29,6 +29,7 @@ public:
 
   void start();
   void stop();
+  virtual void run();
 
 private:
     TemperatureControlImpl() :

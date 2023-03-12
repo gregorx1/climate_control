@@ -53,15 +53,19 @@ int TemperatureControlImpl::getCurrentTemperature() {
   return m_temperature;
 }
 
+void TemperatureControlImpl::run() {
+  cout << "In the thread = getting temperature." << endl;
+}
+
 void TemperatureControlImpl::start() {
   //random seed
   srand(time(nullptr));
 
   m_thread = thread([this]() {
       while (m_running) {
-        cout << "In the thread = getting temperature." << endl;
-        int temp = getCurrentTemperature();
+        run();
 
+        int temp = getCurrentTemperature();
         // todo - we may add or compute any confort temperature range where
         // all the devices are switched OFF
         if (temp <= m_low_limit) {
