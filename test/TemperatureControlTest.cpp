@@ -30,13 +30,13 @@ int main(int argc, char** argv) {
     TemperatureControlImpl& control = TemperatureControlImpl::getInstance();
     control.start();
 
-    InitGoogleTest(&argc, argv);    
+    InitGoogleTest(&argc, argv);
     //InitGoogleMock(&argc, argv);
-    
+
     int ret_value = RUN_ALL_TESTS();
 
     sleep(10);
     control.stop();
-    
+
     return ret_value;
 }

@@ -11,7 +11,7 @@ void TemperatureControlImpl::setLowLimit(int temperature) {
     lock_guard<mutex> lock(m_mutex);
     m_low_limit = temperature;
   }
-  
+
   cout << "Low limit set to " << m_low_limit << endl;
 }
 
@@ -20,7 +20,7 @@ void TemperatureControlImpl::setHighLimit(int temperature) {
     lock_guard<mutex> lock(m_mutex);
     m_high_limit = temperature;
   }
-  
+
   cout << "High limit set to " << m_high_limit << endl;
 }
 
@@ -43,20 +43,20 @@ void TemperatureControlImpl::switchHeater(deviceState_t state) {
 
 int TemperatureControlImpl::getCurrentTemperature() {
   lock_guard<mutex> lock(m_mutex);
-  //get some random value from -49 to 50 
+  //get some random value from -49 to 50
   auto read_result = rand() % 100 - 49;
-  
+
   m_temperature = read_result;
 
-  cout << "Current temperature is " << m_temperature << endl;  
-  
+  cout << "Current temperature is " << m_temperature << endl;
+
   return m_temperature;
 }
 
 void TemperatureControlImpl::start() {
   //random seed
   srand(time(nullptr));
-  
+
   m_thread = thread([this]() {
       while (m_running) {
         cout << "In the thread = getting temperature." << endl;
@@ -73,7 +73,7 @@ void TemperatureControlImpl::start() {
         } else {
           cout << "Temperature withing requested range :)" << endl;
         }
-        
+
         this_thread::sleep_for(chrono::milliseconds(m_polling_interval_ms));
       }
     });
@@ -83,6 +83,3 @@ void TemperatureControlImpl::stop() {
   m_running = false;
   m_thread.join();
 }
-
-
-
