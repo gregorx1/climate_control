@@ -43,7 +43,9 @@ void TemperatureControlImpl::switchHeater(deviceState_t state) {
 
 int TemperatureControlImpl::getCurrentTemperature() {
   lock_guard<mutex> lock(m_mutex);
+
   //get some random value from -49 to 50
+
   auto read_result = rand() % 100 - 49;
 
   m_temperature = read_result;
@@ -58,8 +60,6 @@ void TemperatureControlImpl::run() {
 }
 
 void TemperatureControlImpl::start() {
-  //random seed
-  srand(time(nullptr));
 
   m_thread = thread([this]() {
       while (m_running) {
