@@ -28,6 +28,9 @@ public:
   void stop();
   virtual void run();
 
+protected:
+  virtual ~TemperatureControlImpl() {}
+
   TemperatureControlImpl() :
     m_low_limit(INITIAL_LOW_LIMIT),
     m_high_limit(INITIAL_HIGH_LIMIT),
@@ -37,8 +40,7 @@ public:
       //random seed
       srand(time(nullptr));
     }
-    virtual ~TemperatureControlImpl() {}
-    
+
 private:
     static const int POLLING_INTERVAL_MS = 1000;
     static const int INITIAL_LOW_LIMIT = 10;

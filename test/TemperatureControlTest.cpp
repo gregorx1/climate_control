@@ -14,8 +14,6 @@ public:
 };
 
 TEST(TemperatureControlTest, TemperatureTest0) {
-    TemperatureControlImpl& control = TemperatureControlImpl::getInstance();
-
     MockTemperatureControlLogic logic;
     EXPECT_CALL(logic, run()).Times(AtLeast(1));
 
