@@ -17,10 +17,11 @@ public:
   }
 
   //API
-  int getLowLimit();
-  int getHighLimit();
-  void setLowLimit(int temperature);
-  void setHighLimit(int temperature);
+  int getLowLimit() const;
+  int getHighLimit() const;
+  void setLowLimit(const int temperature);
+  void setHighLimit(const int temperature);
+
   // random value returned instead of real measurement here
   int getCurrentTemperature();
 
@@ -29,8 +30,6 @@ public:
   virtual void run();
 
 protected:
-  virtual ~TemperatureControlImpl() {}
-
   TemperatureControlImpl() :
     m_low_limit(INITIAL_LOW_LIMIT),
     m_high_limit(INITIAL_HIGH_LIMIT),
@@ -41,6 +40,7 @@ protected:
       srand(time(nullptr));
     }
 
+  virtual ~TemperatureControlImpl() {}
 private:
     static const int POLLING_INTERVAL_MS = 1000;
     static const int INITIAL_LOW_LIMIT = 10;
